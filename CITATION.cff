@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this replication code or datasets, please cite it as below."
+authors:
+  - family-names: "Acosta Bautista"
+    given-names: "Bertin Yair"
+    email: "bertiiyair@gmail.com"
+    affiliation: "Centro de Investigación y Docencia Económicas (CIDE)"
+title: "Replication Package: Asymmetric Effects of Real Exchange Rate Movements on Domestic Value Added in Mexican Exports"
+version: 1.0.0
+date-released: 2026-09-24
+url: "https://github.com/bertii-ab/mexico-exports-dva-replication"
+repository-code: "https://github.com/bertii-ab/mexico-exports-dva-replication"
+keywords:
+  - "NARDL"
+  - "ANN-MIDAS"
+  - "Exchange Rate Pass-Through"
+  - "Domestic Value Added"
+  - "Global Value Chains"
+  - "Dominant Currency Pricing"
+  - "Mexican Economy"
+  - "Time Series Econometrics"
+license: "MIT"
+preferred-citation:
+  type: thesis
+  authors:
+    - family-names: "Acosta Bautista"
+      given-names: "Bertin Yair"
+  title: "Asymmetric effects of real exchange rate movements on domestic value added in Mexican exports"
+  institution: "Centro de Investigación y Docencia Económicas (CIDE)"
+  year: 2026
+  url: "https://repositorio-digital.cide.edu/handle/11651/6699"
