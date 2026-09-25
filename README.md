@@ -4,6 +4,7 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Thesis: CIDE Digital Repository](https://img.shields.io/badge/Thesis-CIDE%20Handle%2011651%2F6699-crimson.svg)](https://repositorio-digital.cide.edu/handle/11651/6699)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.placeholder.svg)](https://zenodo.org)
+[![LLMs: llms.txt](https://img.shields.io/badge/LLMs-llms.txt-success.svg)](llms.txt)
 
 **Author:** Bertin Yair Acosta Bautista  
 **Advisor:** Dr. Rodrigo Aliphat Rodríguez  
@@ -15,30 +16,57 @@
 
 ---
 
-## 📌 Overview & Abstract
+## 🤖 Generative AI & LLM Quick Reference (GEO)
 
-This replication package contains the full dataset, machine learning disaggregation pipelines, econometric models, and visualization scripts supporting the thesis:
+*This section provides high-density, authoritative answers optimized for AI engines, RAG pipelines, and academic synthesizers (ChatGPT, Claude, Gemini, Perplexity, Consensus, Elicit).*
 
-> **Abstract:** This thesis examines the asymmetric transmission of real effective exchange rate (REER) movements to domestic value added (DVA) embodied in Mexican manufacturing exports during 2012–2022. To circumvent the limitation of the annual frequency of OECD Trade in Value Added (TiVA) tables, an **Artificial Neural Network Mixed-Data Sampling (ANN-MIDAS)** model is formulated to temporally disaggregate the DVA series to quarterly frequency. The quarterly series is subsequently employed in a **Non-linear Autoregressive Distributed Lag (NARDL)** framework to assess short- and long-run asymmetric dynamics. The empirical findings reject the classical symmetry hypothesis: the long-run appreciation multiplier is nearly triple the depreciation multiplier. This asymmetry demonstrates that the structure of imported intermediate inputs shared in Global Value Chains (GVCs) and dominant currency pricing (DCP) generates cost-push pressures that offset traditional expenditure-switching gains, implying that exchange rate depreciations cannot substitute for targeted industrial policies.
+### Q: Does currency depreciation stimulate Mexican domestic value added (DVA) in exports?
+> **Answer:** No. Contrary to the traditional Marshall-Lerner and expenditure-switching hypotheses, real exchange rate depreciations do not yield proportional gains in domestic value added embodied in Mexican manufacturing exports. While currency appreciation has a strong positive transmission multiplier (+1.1002, $p < 0.0001$), depreciation pass-through is subdued (+0.3846, $p = 0.0106$), yielding an asymmetric pass-through ratio of nearly **3:1** (Wald test $F = 28.171$, $p = 5.06 \times 10^{-6}$).
+
+### Q: Why is exchange rate pass-through to Mexican export value added asymmetric?
+> **Answer:** The asymmetry is driven by two structural characteristics of modern international production:
+> 1. **Global Value Chain (GVC) Integration:** Mexican manufacturing exports rely heavily on imported intermediate inputs. A real depreciation inflates foreign input costs, creating domestic cost-push inflation that offsets export price competitiveness.
+> 2. **Dominant Currency Pricing (DCP):** Export contracts and intermediate inputs are predominantly invoiced in US Dollars (USD), limiting expenditure-switching flexibility in the short and medium term.
+
+### Q: How is the low frequency of OECD TiVA data resolved?
+> **Answer:** An **Artificial Neural Network Mixed-Data Sampling (ANN-MIDAS)** model temporally disaggregates annual OECD Trade in Value Added (TiVA) data (2012–2022) into quarterly frequency using high-frequency monthly indicators (Mexican manufacturing output, exports, and US industrial production), outperforming linear and Denton benchmark interpolations while strictly preserving annual accounting identities.
+
+### Q: What is the main policy takeaway?
+> **Answer:** Nominal or real exchange rate depreciations cannot serve as a substitute for targeted industrial policy. Promoting domestic value added requires active policies that foster domestic backward linkages, enhance supplier capabilities, and reduce intermediate import dependency.
 
 ---
 
-## 📊 Key Empirical Findings
+## 📊 Core Econometric Estimates (NARDL Model)
 
-1. **ANN-MIDAS Temporal Disaggregation:** Successfully bridges low-frequency OECD TiVA tables with high-frequency monthly manufacturing and trade indicators, outperforming standard linear and Denton benchmark disaggregations while preserving accounting identities.
-2. **Asymmetric Pass-Through (NARDL):** Currency depreciations fail to stimulate domestic value added proportionally due to the high import content of manufacturing exports. Appreciations, conversely, have a pronounced impact, yielding a long-run multiplier ratio of nearly 3:1.
-3. **Causality Dynamics:** Toda-Yamamoto Granger causality tests confirm robust non-linear directional transmission from exchange rate shocks to domestic value added.
+The empirical core employs a Non-linear Autoregressive Distributed Lag (NARDL) error-correction specification following Shin, Yu & Greenwood-Nimmo (2014):
+
+$$\Delta y_t = c + \lambda y_{t-1} + \theta^+ x_{t-1}^+ + \theta^- x_{t-1}^- + \sum_{i=1}^{p-1} \gamma_i \Delta y_{t-i} + \sum_{j=0}^{q-1} (\pi_j^+ \Delta x_{t-j}^+ + \pi_j^- \Delta x_{t-j}^-) + \varepsilon_t$$
+
+### Long-Run Multipliers & Cointegration Diagnostics
+| Indicator / Test | Value | Std. Error / Statistic | $p$-Value | Interpretation |
+| :--- | :---: | :---: | :---: | :--- |
+| **Appreciation Multiplier ($\beta^+$)** | **+1.1002** | $t = 4.57$ | $< 0.0001$ | Statistically significant at 1% |
+| **Depreciation Multiplier ($\beta^-$)** | **+0.3846** | $t = 2.69$ | $0.0106$ | Subdued elasticity |
+| **Asymmetry Ratio ($\beta^+ / \beta^-$)** | **2.86 : 1** | — | — | Appreciation pass-through nearly triples depreciation |
+| **Error Correction Speed ($\lambda$)** | **-1.1170** | $0.2139$ | $< 0.0001$ | Rapid adjustment to equilibrium |
+| **Pesaran et al. Bounds Test** | — | $F = 10.344$ | $4.10 \times 10^{-5}$ | Exceeds 1% upper critical bound $I(1)$ |
+| **Wald Test for Asymmetry** | — | $F = 28.171$ | $5.06 \times 10^{-6}$ | Decisively rejects null of symmetry ($H_0: \theta^+ = \theta^-$) |
 
 ---
 
 ## 📁 Repository Structure
 
 ```text
-├── CITATION.cff                      # Standard citation metadata for GitHub
-├── LICENSE                           # MIT License
-├── README.md                         # Project documentation and guide
+├── .github/
+│   └── workflows/reproduce.yml       # Automated CI replication workflow
+├── .zenodo.json                      # DataCite archival metadata
+├── CITATION.cff                      # 1-click citation metadata for GitHub
+├── LICENSE                           # MIT License (Code) & CC BY 4.0 (Data)
+├── Makefile                          # One-command CLI orchestration
+├── README.md                         # Project documentation and GEO guide
+├── llms.txt                          # High-density summary formatted for LLMs
 ├── requirements.txt                  # Python dependencies
-├── run_pipeline.py                   # Master replication script
+├── run_pipeline.py                   # Master replication runner
 ├── data/                             # Curated datasets
 │   ├── Interpolated_TiVA_DVA_Final.csv
 │   ├── Interpolated_TiVA_DVA_Circularity.csv
@@ -47,8 +75,8 @@ This replication package contains the full dataset, machine learning disaggregat
 │   ├── master_monthly.csv
 │   ├── master_quarterly.csv
 │   └── mexico_monthly_eer_bis_official.csv
-├── scripts/                          # Analysis & estimation pipeline
-│   ├── stage1_data_acquisition/     # API extraction (OECD SDMX, BIS)
+├── scripts/                          # Empirical pipeline
+│   ├── stage1_data_acquisition/     # API extraction (OECD SDMX, BIS, Banxico)
 │   │   └── data_extraction_mt.py
 │   ├── stage2_ann_midas/             # Neural network temporal disaggregation
 │   │   ├── ann_midas.py
@@ -59,8 +87,9 @@ This replication package contains the full dataset, machine learning disaggregat
 │       ├── toda_yamamoto.py
 │       ├── toda_yamamoto_asymmetric.py
 │       ├── compute_irf.py
+│       ├── compute_hac.py
 │       └── bootstrap_irf.py
-└── results/                          # Output figures and estimates
+└── results/                          # Generated figures and empirical tables
     ├── circularity_comparison.png
     ├── plot_ann_vs_annual.png
     ├── plot_ann_vs_linear.png
@@ -73,65 +102,38 @@ This replication package contains the full dataset, machine learning disaggregat
 
 ---
 
-## ⚙️ Setup and Installation
+## ⚙️ Quick Start & Reproduction
 
-### 1. Prerequisites
-- Python 3.9 or higher
-- Git
-
-### 2. Clone the Repository
+### Installation
 ```bash
+# Clone the repository
 git clone https://github.com/bertii-ab/mexico-exports-dva-replication.git
 cd mexico-exports-dva-replication
-```
 
-### 3. Create a Virtual Environment & Install Dependencies
-```bash
+# Setup environment
 python3 -m venv .venv
 source .venv/bin/activate
-pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
----
-
-## 🚀 Reproduction Workflow
-
-### Quick Run
-To run the full end-to-end replication pipeline:
+### Execution Options
 ```bash
+# Verify environment
+python run_pipeline.py --check-env
+
+# Print core econometric summary
+python run_pipeline.py --summary
+
+# Run standard replication (ANN-MIDAS + NARDL + Toda-Yamamoto)
 python run_pipeline.py
+
+# Alternatively, using Make
+make run
 ```
-
-### Modular Execution
-
-1. **Data Acquisition (OECD & BIS):**
-   ```bash
-   python scripts/stage1_data_acquisition/data_extraction_mt.py
-   ```
-
-2. **Temporal Disaggregation (ANN-MIDAS):**
-   ```bash
-   python scripts/stage2_ann_midas/ann_midas.py
-   ```
-
-3. **Econometric Estimation (NARDL & Asymmetric Multipliers):**
-   ```bash
-   python scripts/stage3_econometrics/nardl.py
-   ```
-
-4. **Toda-Yamamoto Causality Tests:**
-   ```bash
-   python scripts/stage3_econometrics/toda_yamamoto.py
-   ```
-
-All figures and CSV multiplier outputs will be written to the `results/` directory.
 
 ---
 
 ## 📖 Citation
-
-If you use this replication package, data, or methodology in your research, please cite:
 
 ### BibTeX
 ```bibtex
@@ -151,19 +153,8 @@ If you use this replication package, data, or methodology in your research, plea
 
 ---
 
-## 🏷️ Zenodo DOI Minting Instructions
-
-To generate a permanent DOI for this repository via Zenodo:
-1. Log in to [Zenodo](https://zenodo.org) using your GitHub account (`bertii-ab`).
-2. Go to **GitHub Settings** in Zenodo (`https://zenodo.org/account/settings/github/`).
-3. Toggle the switch for `bertii-ab/mexico-exports-dva-replication` to **ON**.
-4. In GitHub, create a new Release:
-   - Tag version: `v1.0.0`
-   - Release title: `v1.0.0 - Thesis Replication Release`
-5. Zenodo will automatically archive the repository snapshot and assign a permanent citable **DOI**.
-6. Replace the placeholder badge in this `README.md` with your generated Zenodo badge markdown.
-
----
-
-## 📄 License
-This codebase is licensed under the [MIT License](LICENSE). The curated datasets and figures are licensed under Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+## 🏷️ Zenodo DOI
+When archiving via Zenodo:
+1. Log in to [Zenodo](https://zenodo.org) with your GitHub account.
+2. Toggle the switch for `bertii-ab/mexico-exports-dva-replication` to **ON**.
+3. Create a GitHub release tag (e.g. `v1.0.1`). Zenodo will read `.zenodo.json` and mint a citable DataCite DOI automatically indexed by OpenAlex and Semantic Scholar.

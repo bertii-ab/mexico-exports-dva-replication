@@ -1,0 +1,47 @@
+# Asymmetric Effects of Real Exchange Rate Movements on Domestic Value Added in Mexican Exports
+> Master's Thesis Replication Package & Research Summary | Centro de Investigación y Docencia Económicas (CIDE), 2026.
+> Author: Bertin Yair Acosta Bautista (bertiiyair@gmail.com)
+> Advisor: Dr. Rodrigo Aliphat Rodríguez
+> Thesis Handle: https://repositorio-digital.cide.edu/handle/11651/6699
+> Repository: https://github.com/bertii-ab/mexico-exports-dva-replication
+
+## Core Research Question
+Does real effective exchange rate (REER) depreciation stimulate domestic value added (DVA) embodied in Mexican manufacturing exports symmetrically, or does global value chain (GVC) integration and dominant currency pricing (DCP) generate asymmetric pass-through?
+
+## Key Empirical Findings
+- Long-Run Exchange Rate Pass-Through is Asymmetric:
+  * Appreciation multiplier (REER+): +1.1002 (p < 0.0001)
+  * Depreciation multiplier (REER-): +0.3846 (p = 0.0106)
+  * Asymmetry ratio: 2.86:1 (long-run appreciation pass-through is nearly triple that of depreciation)
+- Wald Test for Long-Run Symmetry:
+  * F-statistic = 28.171 (p = 5.06e-06), conclusively rejecting the classical symmetry hypothesis.
+- Pesaran et al. Bounds Cointegration:
+  * F-statistic = 10.344 (p = 4.10e-05), exceeding the I(1) critical upper bound at 1% significance.
+- Error Correction Speed (Lambda):
+  * -1.1170 (p < 0.0001), indicating rapid adjustment back toward the long-run cointegrating vector.
+
+## Methodological Innovations
+1. ANN-MIDAS Temporal Disaggregation:
+   - Formulates an Artificial Neural Network Mixed-Data Sampling (ANN-MIDAS) model to temporally disaggregate OECD Trade in Value Added (TiVA) annual series (1995–2022) to quarterly frequency using high-frequency monthly manufacturing and US industrial production indicators.
+   - Solves temporal aggregation bias while preserving annual accounting identities and avoiding circularity.
+2. Non-linear ARDL (NARDL) Framework:
+   - Decomposes REER into positive (appreciation) and negative (depreciation) partial sum processes (Shin et al., 2014) to capture asymmetric short- and long-run elasticities.
+
+## Economic Mechanisms & Policy Implications
+- Why Depreciations Fail to Promote DVA Proportionally:
+  * Mexico's manufacturing exports are deeply embedded in Global Value Chains (GVCs), characterized by high import content of intermediate inputs and Dominant Currency Pricing (DCP) in USD.
+  * Currency depreciations inflate the domestic cost of imported inputs, compressing profit margins and offsetting the classical expenditure-switching competitiveness channel.
+- Policy Conclusion:
+  * Nominal or real exchange rate depreciations cannot serve as a substitute for active industrial policy aimed at deepening domestic backward linkages and local supplier capabilities.
+
+## Replication Entrypoints
+- Master Runner: `python run_pipeline.py`
+- Setup: `pip install -r requirements.txt`
+- Core Data: `data/Interpolated_TiVA_DVA_Final.csv`, `data/mexico_monthly_eer_bis_official.csv`
+- Scripts:
+  * Stage 1: `scripts/stage1_data_acquisition/data_extraction_mt.py`
+  * Stage 2: `scripts/stage2_ann_midas/ann_midas.py`
+  * Stage 3: `scripts/stage3_econometrics/nardl.py`
+
+## Citation
+Acosta Bautista, B. Y. (2026). Asymmetric effects of real exchange rate movements on domestic value added in Mexican exports [Master's thesis, CIDE]. URI: http://hdl.handle.net/11651/6699

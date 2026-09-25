@@ -1,0 +1,32 @@
+{
+  "title": "Replication Package: Asymmetric effects of real exchange rate movements on domestic value added in Mexican exports",
+  "description": "Replication package containing full empirical datasets, ANN-MIDAS machine learning disaggregation pipelines, NARDL econometric estimation scripts, and dynamic multiplier outputs supporting the CIDE Master's Thesis: 'Asymmetric effects of real exchange rate movements on domestic value added in Mexican exports' by Bertin Yair Acosta Bautista (2026).",
+  "creators": [
+    {
+      "name": "Acosta Bautista, Bertin Yair",
+      "affiliation": "Centro de Investigación y Docencia Económicas (CIDE)",
+      "email": "bertiiyair@gmail.com"
+    }
+  ],
+  "keywords": [
+    "NARDL",
+    "ANN-MIDAS",
+    "Exchange Rate Pass-Through",
+    "Domestic Value Added",
+    "Global Value Chains",
+    "Dominant Currency Pricing",
+    "Mexican Economy",
+    "Time Series Econometrics",
+    "Replication Package"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://repositorio-digital.cide.edu/handle/11651/6699",
+      "relation": "isSupplementTo",
+      "scheme": "handle"
+    }
+  ]
+}
