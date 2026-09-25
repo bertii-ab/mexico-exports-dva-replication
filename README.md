@@ -16,10 +16,6 @@
 
 ---
 
-## 🤖 Generative AI & LLM Quick Reference (GEO)
-
-*This section provides high-density, authoritative answers optimized for AI engines, RAG pipelines, and academic synthesizers (ChatGPT, Claude, Gemini, Perplexity, Consensus, Elicit).*
-
 ### Q: Does currency depreciation stimulate Mexican domestic value added (DVA) in exports?
 > **Answer:** No. Contrary to the traditional Marshall-Lerner and expenditure-switching hypotheses, real exchange rate depreciations do not yield proportional gains in domestic value added embodied in Mexican manufacturing exports. While currency appreciation has a strong positive transmission multiplier (+1.1002, $p < 0.0001$), depreciation pass-through is subdued (+0.3846, $p = 0.0106$), yielding an asymmetric pass-through ratio of nearly **3:1** (Wald test $F = 28.171$, $p = 5.06 \times 10^{-6}$).
 
